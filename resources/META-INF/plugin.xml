@@ -1,0 +1,91 @@
+<idea-plugin>
+    <id>com.wang.bilibili.danmu</id>
+    <name>BiliBiliDanMu</name>
+    <version>1.0</version>
+    <vendor email="2621197736@qq.com" url="">shanghua</vendor>
+
+    <description>这是一个 b站 弹幕助手，方便打代码的同时查看 b站 弹幕用的，也是我第一次做插件</description>
+
+    <change-notes>第一个版本</change-notes>
+
+    <idea-version since-build="183.0"/>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <themeProvider id="40f30ef7-4d2a-4455-acb6-5d0df75b8432" path="/colorSchemes/MyLangDefault.theme.json"/>
+    </extensions>
+    <resource-bundle>messages.BasicActionsBundle</resource-bundle>
+
+    <actions>
+        <!--<action id="com.wang.action.PopupDialogAction" class="com.wang.action.PopupDialogAction"
+                text="Pop Dialog Action" description="SDK action example">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>-->
+        <action id="com.wang.action.PopupDialogAction" class="com.wang.action.TestDialogAction"
+                text="Pop Dialog Action" description="SDK action example">
+            <override-text place="MainMenu" text="Pop Dialog Action"/>
+            <keyboard-shortcut first-keystroke="ctrl alt A" second-keystroke="C" keymap="$default"/>
+            <synonym text="测试 Popup"/>
+            <mouse-shortcut keymap="$default" keystroke="ctrl button3 doubleClick"/>
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+        </action>
+
+        <action id="com.wang.editor.samples.EditorIllustrationAction"
+                class="com.wang.editor.samples.EditorIllustrationAction"
+                text="Editor Replace Text"
+                description="Replacee selected text with 'Replacement'">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <action id="com.wang.editor.samples.EditorHandlerIllustration"
+                class="com.wang.editor.samples.EditorHandlerIllustration"
+                text="Editor Add Caret"
+                description="Adds a second caret below the existing one.">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <action id="com.wang.editor.samples.EditorAreaIllustration"
+                class="com.wang.editor.samples.EditorAreaIllustration"
+                text="Caret Position"
+                description="Reports information about the caret position.">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <group id="com.wang.action.GroupedActions" text="Static Grouped Actions" popup="true"
+               icon="/icon/milovanderlinden-businessman.svg">
+            <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="com.wang.action.PopupDialogAction"/>
+            <action id="com.wang.action.GroupedAction" class="com.wang.action.PopupDialogAction"
+                    text="A Group Action" description="SDK action example"
+                    icon="/icon/milovanderlinden-businessman.svg">
+            </action>
+        </group>
+
+        <group id="com.wang.action.CustomDefaultActionGroup" class="com.wang.action.CustomDefaultActionGroup"
+               popup="true" icon="/icon/milovanderlinden-businessman.svg">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <action id="com.wang.action.CustomGroupedAction" class="com.wang.action.PopupDialogAction"
+                    icon="/icon/milovanderlinden-businessman.svg"/>
+        </group>
+
+        <group id="com.wang.action.DynamicActionGroup" class="com.wang.action.DynamicActionGroup"
+               text="Dynamically Grouped Actions" description="SDK dynamically grouped action example" popup="true"
+               icon="SdkIcons.DEFAULT_ICON">
+            <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="com.wang.action.GroupedActions"/>
+        </group>
+        <group id="com.wang.action.persisting.component.PersistingActionGroup" popup="true"
+               class="com.wang.action.persisting.component.PersistingActionGroup" text="PersistingActionGroup"
+               description="Persisting Test">
+            <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="com.wang.action.DynamicActionGroup"/>
+        </group>
+    </actions>
+    <!-- toolWindow -->
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.wang.action.service.MyService"/>
+        <applicationService serviceImplementation="com.wang.settings.AppSettingsState"/>
+        <notificationGroup displayType="BALLOON" id="Fredis"/>
+        <toolWindow factoryClass="com.wang.tool.window.MyToolWindowFactory" id="MyToolWindow"
+                    canCloseContents="true" anchor="bottom"/>
+        <additionalTextAttributes scheme="Default" file="colorSchemes/MyLangDefault.xml"/>
+        <applicationConfigurable parentId="tools" instance="com.wang.settings.ApplicationSettingsConfigurable"
+                                 id="com.wang.settings.ApplicationSettingsConfigurable"
+                                 displayName="SDK: Application Setting Example"/>
+    </extensions>
+</idea-plugin>
