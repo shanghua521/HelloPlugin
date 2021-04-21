@@ -1,6 +1,5 @@
-package com.wang.action;
+package com.wang.controls;
 
-import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.ui.AnActionButton;

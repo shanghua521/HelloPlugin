@@ -22,7 +22,7 @@
                 text="Pop Dialog Action" description="SDK action example">
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>-->
-        <action id="com.wang.action.PopupDialogAction" class="com.wang.action.TestDialogAction"
+        <action id="com.wang.action.PopupDialogAction" class="com.wang.action.PopupDialogAction"
                 text="Pop Dialog Action" description="SDK action example">
             <override-text place="MainMenu" text="Pop Dialog Action"/>
             <keyboard-shortcut first-keystroke="ctrl alt A" second-keystroke="C" keymap="$default"/>
@@ -37,18 +37,78 @@
                 description="Replacee selected text with 'Replacement'">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </action>
-        <action id="com.wang.editor.samples.EditorHandlerIllustration"
+        <!--<action id="com.wang.editor.samples.EditorHandlerIllustration"
                 class="com.wang.editor.samples.EditorHandlerIllustration"
                 text="Editor Add Caret"
                 description="Adds a second caret below the existing one.">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-        </action>
+        </action>-->
         <action id="com.wang.editor.samples.EditorAreaIllustration"
                 class="com.wang.editor.samples.EditorAreaIllustration"
                 text="Caret Position"
                 description="Reports information about the caret position.">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </action>
+
+        <!-- Popups -->
+        <action id="com.wang.popups.ActionGroupPopupAction" class="com.wang.popups.ActionGroupPopupAction"
+                text="ActionGroupPopupAction" description="ActionGroupPopupAction">
+            <add-to-group group-id="PopupMenuActions" anchor="first"/>
+            <keyboard-shortcut first-keystroke="control alt 1" keymap="Default for GNOME"/>
+        </action>
+        <group id="popupGroup"/>
+        <action id="com.wang.popups.CustomFirstAction" class="com.wang.popups.CustomFirstAction"
+                text="CustomFirstAction" description="CustomFirstAction">
+            <add-to-group group-id="popupGroup" anchor="first"/>
+        </action>
+        <action id="com.wang.popups.CustomSecondAction" class="com.wang.popups.CustomSecondAction"
+                text="CustomSecondAction" description="CustomSecondAction">
+            <add-to-group group-id="popupGroup" anchor="after" relative-to-action="com.wang.popups.CustomFirstAction"/>
+        </action>
+        <action class="com.wang.popups.ComponentPopupAction" id="com.wang.popups.ComponentPopupAction"
+                text="ComponentPopupAction" description="ComponentPopupAction">
+            <add-to-group group-id="PopupMenuActions" anchor="first"/>
+            <keyboard-shortcut first-keystroke="control alt 2" keymap="Default for GNOME"/>
+        </action>
+        <action class="com.wang.popups.ConfirmPopupAction" id="com.wang.popups.ConfirmPopupAction"
+                text="ConfirmPopupAction" description="ConfirmPopupAction">
+            <add-to-group group-id="PopupMenuActions" anchor="first"/>
+            <keyboard-shortcut first-keystroke="control alt 3" keymap="Default for GNOME"/>
+        </action>
+        <action class="com.wang.popups.MultiChoosePopupAction" id="com.wang.popups.MultiChoosePopupAction"
+                text="MultiChoosePopupAction" description="MultiChoosePopupAction">
+            <add-to-group group-id="PopupMenuActions" anchor="first"/>
+            <keyboard-shortcut first-keystroke="control alt 4" keymap="Default for GNOME"/>
+        </action>
+        <action class="com.wang.popups.SubGroupPopupAction" id="com.wang.popups.SubGroupPopupAction"
+                text="SubGroupPopupAction"
+                description="SubGroupPopupAction">
+            <add-to-group group-id="PopupMenuActions" anchor="first"/>
+            <keyboard-shortcut first-keystroke="control alt 8" keymap="Default for GNOME"/>
+        </action>
+        <group id="subOuterGroup"/>
+        <group id="subInnerGroup" popup="true" text="SubInnerGroup">
+            <add-to-group group-id="subOuterGroup" anchor="first"/>
+            <action class="com.wang.popups.SubAction" id="com.wang.popups.SubAction"
+                    text="SubAction" description="SubAction"/>
+        </group>
+        <!-- Popups -->
+        <action class="com.wang.editor.hint.HintNotificationAction" id="com.wang.editor.hint.HintNotificationAction"
+                text="HintNotificationAction" description="HintNotificationAction" popup="false">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <keyboard-shortcut first-keystroke="control alt 9" keymap="Default for GNOME"/>
+        </action>
+        <action class="com.wang.controls.TreeAction" id="com.wang.controls.TreeAction" text="TreeAction"
+                description="TreeAction">
+            <add-to-group group-id="ToolsMenu" anchor="after"
+                          relative-to-action="com.wang.editor.hint.HintNotificationAction"/>
+        </action>
+        <action class="com.wang.file.samples.FileChooserAction" id="com.wang.file.samples.FileChooserAction"
+                text="FileChooserAction" description="FileChooserAction">
+            <add-to-group group-id="ToolsMenu" anchor="after"
+                          relative-to-action="com.wang.editor.hint.HintNotificationAction"/>
+        </action>
+
         <group id="com.wang.action.GroupedActions" text="Static Grouped Actions" popup="true"
                icon="/icon/milovanderlinden-businessman.svg">
             <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="com.wang.action.PopupDialogAction"/>
@@ -82,10 +142,14 @@
         <applicationService serviceImplementation="com.wang.settings.AppSettingsState"/>
         <notificationGroup displayType="BALLOON" id="Fredis"/>
         <toolWindow factoryClass="com.wang.tool.window.MyToolWindowFactory" id="MyToolWindow"
-                    canCloseContents="true" anchor="bottom"/>
+                    canCloseContents="true" anchor="right" secondary="true"/>
         <additionalTextAttributes scheme="Default" file="colorSchemes/MyLangDefault.xml"/>
         <applicationConfigurable parentId="tools" instance="com.wang.settings.ApplicationSettingsConfigurable"
                                  id="com.wang.settings.ApplicationSettingsConfigurable"
                                  displayName="SDK: Application Setting Example"/>
+        <extendWordSelectionHandler id="com.wang.editor.samples.TextSelectionHandler"
+                                    implementation="com.wang.editor.samples.TextSelectionHandler"/>
+        <!-- <configurationType implementation="com.wang.run.configuration.GradleExternalTaskConfigurationType"
+                            order="first"/>-->
     </extensions>
 </idea-plugin>

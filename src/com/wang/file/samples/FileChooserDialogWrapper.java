@@ -1,4 +1,4 @@
-package com.wang.file;
+package com.wang.file.samples;
 
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.ui.*;
