@@ -92,6 +92,7 @@
             <action class="com.wang.popups.SubAction" id="com.wang.popups.SubAction"
                     text="SubAction" description="SubAction"/>
         </group>
+
         <!-- Popups -->
         <action class="com.wang.editor.hint.HintNotificationAction" id="com.wang.editor.hint.HintNotificationAction"
                 text="HintNotificationAction" description="HintNotificationAction" popup="false">
@@ -103,6 +104,21 @@
             <add-to-group group-id="ToolsMenu" anchor="after"
                           relative-to-action="com.wang.editor.hint.HintNotificationAction"/>
         </action>
+        <action class="com.wang.controls.ListAction" id="com.wang.controls.ListAction" text="ListAction"
+                description="ListAction">
+            <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="com.wang.controls.TreeAction"/>
+        </action>
+        <action class="com.wang.splitter.JBSplitterAction" id="com.wang.splitter.JBSplitterAction"
+                text="JBSplitterAction"
+                description="JBSplitterAction">
+            <add-to-group group-id="ToolsMenu" anchor="after"
+                          relative-to-action="com.wang.controls.TreeAction"/>
+        </action>
+        <action class="com.wang.tab.JBTabAction" id="com.wang.tab.JBTabAction" text="JBTabAction"
+                description="JBTabAction">
+            <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="com.wang.splitter.JBSplitterAction"/>
+        </action>
+
         <action class="com.wang.file.samples.FileChooserAction" id="com.wang.file.samples.FileChooserAction"
                 text="FileChooserAction" description="FileChooserAction">
             <add-to-group group-id="ToolsMenu" anchor="after"
@@ -149,7 +165,7 @@
                                  displayName="SDK: Application Setting Example"/>
         <extendWordSelectionHandler id="com.wang.editor.samples.TextSelectionHandler"
                                     implementation="com.wang.editor.samples.TextSelectionHandler"/>
-        <!-- <configurationType implementation="com.wang.run.configuration.GradleExternalTaskConfigurationType"
-                            order="first"/>-->
+         <configurationType implementation="com.wang.run.configuration.DemoConfigurationType"
+                            order="first"/>
     </extensions>
 </idea-plugin>

@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public class EditorAreaIllustration extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        final Editor editor = e.getData(CommonDataKeys.EDITOR);
+        final Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
         final CaretModel caretModel = editor.getCaretModel();
         final Caret primaryCaret = caretModel.getPrimaryCaret();
         LogicalPosition logicalPos = primaryCaret.getLogicalPosition();
